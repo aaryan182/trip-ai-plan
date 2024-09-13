@@ -19,9 +19,6 @@ function Header() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [openDialog, setOpenDialog] = useState(false);
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   const login = useGoogleLogin({
     onSuccess: (codeResp) => GetUserProfile(codeResp),
@@ -49,7 +46,9 @@ function Header() {
 
   return (
     <div className="p-3 shadow-sm flex justify-between items-center px-4 bg-gradient-to-r from-purple-500 to-purple-700">
-      <img src="/image.png" className="w-12 h-12" alt="Logo" />
+      <a href="/" className="inline-block">
+        <img src="/image.png" className="w-12 h-12" alt="Logo" />
+      </a>
       <div>
         {user ? (
           <div className="flex items-center gap-4">
@@ -100,7 +99,7 @@ function Header() {
           </Button>
         )}
       </div>
-  
+
       <Dialog open={openDialog}>
         <DialogContent className="bg-white rounded-lg shadow-lg p-6">
           <DialogHeader>
@@ -125,7 +124,6 @@ function Header() {
       </Dialog>
     </div>
   );
-  
 }
 
 export default Header;

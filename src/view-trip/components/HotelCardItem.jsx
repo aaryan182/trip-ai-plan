@@ -1,5 +1,6 @@
 import { GetPlaceDetails, PHOTO_REF_URL } from "@/service/GlobalApi";
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 function HotelCardItem({ item }) {
@@ -21,6 +22,7 @@ function HotelCardItem({ item }) {
       setPhotoUrl(PhotoUrl);
     });
   };
+
   return (
     <div className="p-4">
       <Link
@@ -50,5 +52,14 @@ function HotelCardItem({ item }) {
     </div>
   );  
 }
+
+HotelCardItem.propTypes = {
+  item: PropTypes.shape({
+    hotelName: PropTypes.string,
+    hotelAddress: PropTypes.string,
+    price: PropTypes.string,
+    rating: PropTypes.number,
+  }),
+};
 
 export default HotelCardItem;

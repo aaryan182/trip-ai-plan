@@ -114,6 +114,9 @@ function CreateTrip() {
         </div>
 
         <div>
+        <label className="text-xl font-medium text-gray-700">
+            How Many Days?
+          </label>
           <Input
             label="How many days?"
             type="number"

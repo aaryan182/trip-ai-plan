@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { GetPlaceDetails, PHOTO_REF_URL } from "@/service/GlobalApi";
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function PlaceCardItem({ place }) {
       setPhotoUrl(PhotoUrl);
     });
   };
+
   return (
     <div>
       <Link
@@ -60,5 +62,16 @@ function PlaceCardItem({ place }) {
     </div>
   );
 }
+
+PlaceCardItem.propTypes = {
+  place: PropTypes.shape({
+    placeName: PropTypes.string,
+    geoCoordinates: PropTypes.string,
+    placeDetails: PropTypes.string,
+    time: PropTypes.string,
+    ticketPricing: PropTypes.string,
+    rating: PropTypes.number,
+  }),
+};
 
 export default PlaceCardItem;

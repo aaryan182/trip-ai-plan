@@ -28,13 +28,18 @@ function ViewTrip() {
 
   return (
     <div className="p-12 md:px-25 lg:px-44 xl:px-56">
-      <InfoSection trip={trip} />
-      <Hotels trip={trip} />
-      <TripPlace trip={trip} />
-      <Footer trip={trip} />
+      {trip ? (
+        <>
+          <InfoSection trip={trip} />
+          <Hotels trip={trip} />
+          <TripPlace trip={trip} />
+          <Footer trip={trip} />
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
-  
 }
 
 export default ViewTrip;

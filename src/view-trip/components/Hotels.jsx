@@ -1,12 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import HotelCardItem from "./HotelCardItem";
 
 function Hotels({ trip }) {
   return (
     <div>
-      <h2 className="font-bold text-xl my-7 text-center">
-        Hotel Recommendation
-      </h2>
+      <h2 className="font-bold text-xl my-7 text-center">Hotel Recommendation</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {trip?.tripData?.hotelOptions?.length > 0 ? (
           trip.tripData.hotelOptions.map((item, index) => (
@@ -21,5 +20,17 @@ function Hotels({ trip }) {
     </div>
   );
 }
+
+Hotels.propTypes = {
+  trip: PropTypes.shape({
+    tripData: PropTypes.shape({
+      hotelOptions: PropTypes.arrayOf(
+        PropTypes.shape({
+          // Define the shape of hotelOptions items if needed
+        })
+      ),
+    }),
+  }),
+};
 
 export default Hotels;
