@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
-  Input,
-  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
-} from "@/components/ui";
+} from "@/components/ui/dialog";
 import {
   SelectBudgetOptions,
   SelectTravelList,
