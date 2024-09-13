@@ -91,93 +91,107 @@ function CreateTrip() {
   };
 
   return (
-    <div className="container">
-      <h2 className="font-bold text-3xl">
+    <div className="container mx-auto p-4 lg:p-10">
+      <h2 className="font-extrabold text-3xl lg:text-4xl text-center text-purple-700">
         Tell us your travel preferences 🌍✈️🌴
       </h2>
-      <p className="mt-3 text-gray-600 text-xl">
+      <p className="mt-3 text-gray-600 text-xl text-center">
         Provide basic info to generate a customized itinerary.
       </p>
 
-      <div className="mt-20">
-        <label className="text-xl font-medium">
-          What is destination of choice?
-        </label>
-        <GooglePlacesAutocomplete
-          apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
-          selectProps={{
-            place,
-            onChange: (v) => updateFormData("location", v.label),
-          }}
-        />
-        <Input
-          label="How many days?"
-          type="number"
-          min="1"
-          onChange={(v) => updateFormData("totalDays", v.target.value)}
-        />
+      <div className="mt-10 space-y-8">
+        <div>
+          <label className="text-xl font-medium text-gray-700">
+            What is your destination of choice?
+          </label>
+          <GooglePlacesAutocomplete
+            apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
+            selectProps={{
+              place,
+              onChange: (v) => updateFormData("location", v.label),
+            }}
+          />
+        </div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div>
+          <Input
+            label="How many days?"
+            type="number"
+            min="1"
+            className="mt-3 border-gray-300 focus:ring-purple-500 focus:border-purple-500"
+            onChange={(v) => updateFormData("totalDays", v.target.value)}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
           {SelectBudgetOptions.map((item, index) => (
             <div
               key={index}
               onClick={() => updateFormData("budget", item.title)}
-              className={`cursor-pointer p-4 border rounded-lg hover:shadow-lg ${
+              className={`cursor-pointer p-6 border rounded-lg text-center hover:shadow-lg transition-all ${
                 formData?.budget === item.title
-                  ? "shadow-lg border-cyan-500"
-                  : ""
+                  ? "shadow-lg border-purple-500"
+                  : "border-gray-300"
               }`}
             >
               <h2>{item.icon}</h2>
-              <h2>{item.title}</h2>
-              <h2 className="text-gray-500">{item.desc}</h2>
+              <h2 className="text-xl font-semibold">{item.title}</h2>
+              <p className="text-gray-500">{item.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
           {SelectTravelList.map((item, index) => (
             <div
               key={index}
               onClick={() => updateFormData("traveler", item.people)}
-              className={`cursor-pointer p-4 border rounded-lg hover:shadow-lg ${
+              className={`cursor-pointer p-6 border rounded-lg text-center hover:shadow-lg transition-all ${
                 formData?.traveler === item.people
-                  ? "shadow-lg border-cyan-500"
-                  : ""
+                  ? "shadow-lg border-purple-500"
+                  : "border-gray-300"
               }`}
             >
               <h2>{item.icon}</h2>
-              <h2>{item.title}</h2>
-              <h2 className="text-gray-500">{item.desc}</h2>
+              <h2 className="text-xl font-semibold">{item.title}</h2>
+              <p className="text-gray-500">{item.desc}</p>
             </div>
           ))}
         </div>
+
+        <Button
+          onClick={OnGenerateTrip}
+          className="mt-10 w-full lg:w-auto bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-all"
+          disabled={loading}
+        >
+          {loading ? (
+            <AiOutlineLoading3Quarters className="animate-spin text-white" />
+          ) : (
+            "Generate Trip"
+          )}
+        </Button>
+
+        <Dialog open={openDialog}>
+          <DialogContent className="bg-white rounded-lg p-6">
+            <DialogHeader>
+              <DialogDescription>
+                <img src="/image.png" alt="logo" className="w-20 mx-auto" />
+                <h2 className="font-bold text-center text-purple-700 text-lg">
+                  Sign In with Google
+                </h2>
+                <Button
+                  onClick={login}
+                  className="mt-4 flex items-center justify-center w-full bg-purple-600 text-white hover:bg-purple-700 transition-all"
+                >
+                  <FcGoogle className="mr-2" /> Sign In With Google
+                </Button>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <Button onClick={OnGenerateTrip} disabled={loading}>
-        {loading ? (
-          <AiOutlineLoading3Quarters className="animate-spin" />
-        ) : (
-          "Generate Trip"
-        )}
-      </Button>
-
-      <Dialog open={openDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogDescription>
-              <img src="/image.png" alt="logo" />
-              <h2>Sign In with Google</h2>
-              <Button onClick={login}>
-                <FcGoogle /> Sign In With Google
-              </Button>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
 
 export default CreateTrip;
-

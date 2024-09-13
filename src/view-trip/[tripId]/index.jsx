@@ -11,26 +11,30 @@ import Footer from "../components/Footer";
 function ViewTrip() {
   const { tripId } = useParams();
   const [trip, setTrip] = useState();
-
   const GetTripData = async () => {
     const docRef = doc(db, "AiTrips", tripId);
     const docSnap = await getDoc(docRef);
-    docSnap.exists()
-      ? (console.log("Document data:", docSnap.data()), setTrip(docSnap.data()))
-      : (console.log("No such document!"), toast("No trip found!"));
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      setTrip(docSnap.data());
+    } else {
+      console.log("No such document!");
+      toast("No trip found!");
+    }
   };
   useEffect(() => {
     tripId && GetTripData();
   }, [tripId]);
 
   return (
-    <div className="p-12 md:px-25 lg:px-44 xl:px:56">
+    <div className="p-12 md:px-25 lg:px-44 xl:px-56">
       <InfoSection trip={trip} />
       <Hotels trip={trip} />
       <TripPlace trip={trip} />
       <Footer trip={trip} />
     </div>
   );
+  
 }
 
 export default ViewTrip;

@@ -23,18 +23,19 @@ function UserTripCard({ trip }) {
   };
   return (
     <Link to={"/view-trip/" + trip?.id}>
-      <div className="hover:scale-105 transition-all hover:shadow-sm">
+      <div className="hover:scale-105 transition-all hover:shadow-sm rounded-xl overflow-hidden">
         <img
           src={photoUrl}
-          className="rounded-xl h-[200px] w-full object-cover"
+          className="h-[200px] w-full object-cover"
+          alt="Trip"
         />
-        <div>
-          <h2 className="font-medium text-lg">
+        <div className="p-4">
+          <h2 className="font-medium text-lg text-gray-800">
             {trip?.userSelection?.location}
           </h2>
           <h2 className="text-sm text-gray-600">
             {trip?.userSelection?.totalDays} Days trip with{" "}
-            {trip?.userSelection?.budget}{" "}
+            {trip?.userSelection?.budget}
           </h2>
         </div>
       </div>
