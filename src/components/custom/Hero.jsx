@@ -19,6 +19,7 @@ function Hero() {
           Start Planning Today – It’s Free!
         </Button>
       </Link>
+      <img src='/landing.png' className='-mt-20 width-[120px] height-[120px]'/>
     </div>
   );  
 }
