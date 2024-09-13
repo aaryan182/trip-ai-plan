@@ -33,6 +33,18 @@ function CreateTrip() {
   const updateFormData = (name, value) =>
     setFromData((prev) => ({ ...prev, [name]: value }));
 
+  const GetUserProfile = async (tokenInfo) => {
+    const resp = await axios.get(
+      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
+      {
+        headers: { Authorization: `Bearer ${tokenInfo?.access_token}` },
+      }
+    );
+    localStorage.setItem("user", JSON.stringify(resp.data));
+    setOpenDialog(false);
+    OnGenerateTrip();
+  };
+
   const login = useGoogleLogin({
     onSuccess: GetUserProfile,
     onError: console.log,
@@ -76,18 +88,6 @@ function CreateTrip() {
     });
     setLoading(false);
     navigate("/view-trip/" + docId);
-  };
-
-  const GetUserProfile = async (tokenInfo) => {
-    const resp = await axios.get(
-      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
-      {
-        headers: { Authorization: `Bearer ${tokenInfo?.access_token}` },
-      }
-    );
-    localStorage.setItem("user", JSON.stringify(resp.data));
-    setOpenDialog(false);
-    OnGenerateTrip();
   };
 
   return (
@@ -180,3 +180,4 @@ function CreateTrip() {
 }
 
 export default CreateTrip;
+

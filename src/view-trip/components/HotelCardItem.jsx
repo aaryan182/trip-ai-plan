@@ -34,7 +34,7 @@ function HotelCardItem({ item }) {
       >
         <div className="hover:scale-105 transition-all cursor-pointer">
           <img
-            src={photoUrl ? photoUrl : "/public/road-trip-vacation.jpg"}
+            src={photoUrl ? photoUrl : "/road-trip-vacation.jpg"}
             className="rounded-xl h-[180px] w-full object-cover"
           />
           <div className="my-3 py-2">

@@ -22,7 +22,7 @@ function InfoSection({ trip }) {
   return (
     <div>
       <img
-        src={photoUrl ? photoUrl : "/public/road-trip-vacation.png"}
+        src={photoUrl ? photoUrl : "/road-trip-vacation.png"}
         className="h-[330px] w-full object-cover rounded-xl"
       />
       <div className="flex justify-between items-center">
