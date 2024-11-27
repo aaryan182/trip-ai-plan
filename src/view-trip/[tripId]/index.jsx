@@ -26,6 +26,9 @@ function ViewTrip() {
     tripId && GetTripData();
   }, [tripId]);
 
+  console.log(trip);
+  
+
   return (
     <div className="p-12 md:px-25 lg:px-44 xl:px-56">
       {trip ? (

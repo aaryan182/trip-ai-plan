@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import PlaceCardItem from "./PlaceCardItem";
 
 function TripPlace({ trip }) {
+  console.log(trip);
+  
   return (
     <div className="my-4">
       <h2 className="font-bold text-xl mb-4">Places to Visit</h2>
